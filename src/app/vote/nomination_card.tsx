@@ -1,13 +1,12 @@
 import Image from "next/image";
 import React, {useState} from 'react';
-import {Candidate} from "@prisma/client";
 
 interface NominationCardProps {
     nomination: {
         nominationName: string;
         NominationID: string;
         nominationDescription: string;
-        candidates: Candidate[];
+        candidates: any[];
     };
     onchange: any;
 }
@@ -27,7 +26,7 @@ const NominationCard: React.FC<NominationCardProps> = ({ nomination, onchange })
             <p className="text-gray-600 mb-4">{nomination.nominationDescription}</p>
             {nomination.candidates.length > 0 ? (
                 <div className="grid grid-cols-1 gap-4">
-                    {nomination.candidates.map((candidate: Candidate) => (
+                    {nomination.candidates.map((candidate: any) => (
                         <div key={candidate.candidateID} className="flex items-center justify-between">
                             <div className="flex items-center gap-4">
                                 <div className="rounded-full overflow-hidden h-16 w-16">

@@ -3,7 +3,6 @@
 'use client'
 import {useEffect, useState} from "react";
 import NominationCard from "@/app/vote/nomination_card";
-import {Nomination} from "@prisma/client";
 import {useRouter} from "next/navigation";
 import {getCookie} from "cookies-next";
 
@@ -48,7 +47,7 @@ export default function VotePage() {
     };
 // pages/vote.js
     const isAllNominationsFilled = () => {
-        nominations.map((nomination:Nomination) => {
+        nominations.map((nomination:any) => {
             if (!userSelected[nomination.NominationID]) {
                 return false;
             }
