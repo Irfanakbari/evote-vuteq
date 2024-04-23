@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
     });
 
     // Sort nominations based on the highest totalVotes among candidates
-    const sortedNominations = nominationsWithTotalVotes.sort((a, b) => {
+    const sortedNominations = nominationsWithTotalVotes.sort((a: any, b: any) => {
         const totalVotesA = a.candidates.reduce((total: any, candidate: any) => total + candidate.totalVotes, 0);
         const totalVotesB = b.candidates.reduce((total: any, candidate: any) => total + candidate.totalVotes, 0);
         return totalVotesB - totalVotesA;
