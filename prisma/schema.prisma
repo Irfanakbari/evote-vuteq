@@ -1,0 +1,42 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Candidate {
+  candidateID            String      @id @default(uuid())
+  candidateName          String
+  candidatePicture       String
+  Nomination             Nomination? @relation(fields: [nominationNominationID], references: [NominationID])
+  nominationNominationID Int?
+  Vote                   Vote[]
+}
+
+model Nomination {
+  NominationID          Int         @id @default(autoincrement())
+  nominationName        String
+  nominationDescription String
+  candidates            Candidate[]
+  Vote                  Vote[]
+}
+
+model Vote {
+  voteID                 Int        @id @default(autoincrement())
+  nomination             Nomination @relation(fields: [nominationNominationID], references: [NominationID])
+  nominationNominationID Int
+  candidate              Candidate  @relation(fields: [candidateCandidateID], references: [candidateID])
+  timestamp              DateTime   @default(now())
+  candidateCandidateID   String
+}
+
+model Setting {
+  id     Int     @id @default(autoincrement())
+  isOpen Boolean @default(false)
+}
