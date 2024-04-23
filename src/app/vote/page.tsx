@@ -18,7 +18,7 @@ export default function VotePage() {
         }
         const fetchData = async () => {
             try {
-                const response = await fetch('http://localhost:3000/api/fe/nominations');
+                const response = await fetch('https://vote.vuteq.co.id/api/fe/nominations');
                 if (response.ok) {
                     const data = await response.json();
                     setNominations(data.data);
@@ -66,7 +66,7 @@ export default function VotePage() {
                 alert("Anda harus mengisi semua nominasi.");
                 return;
             }
-            const response = await fetch('http://localhost:3000/api/fe/vote', {
+            const response = await fetch('https://vote.vuteq.co.id/api/fe/vote', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
